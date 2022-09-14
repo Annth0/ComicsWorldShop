@@ -13,6 +13,7 @@ def login():
     print(request.form['usuario'])
     print(request.form['password'])
     """
+    
     if request.method == 'POST':
         #print(request.form['usuario'])
         #print(request.form['password'])
