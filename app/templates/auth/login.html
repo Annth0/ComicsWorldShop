@@ -9,6 +9,7 @@
     {% endblock %}
 
 <form class="form-signin" action="/login" method="POST">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
     <img class="mb-4" src="{{  url_for('static', filename='img/flask.svg') }}" alt="flask image logo" width="72" height="57">
     <h1 class="h3 mb-3 fw-normal">Inicio de sesi&oacute;n</h1>
     <input type="text" id="usuario" name="usuario" class="form-control" placeholder="Koder007" required autofocus>
