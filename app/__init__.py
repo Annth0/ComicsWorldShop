@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return "Hola mundo"
+    return render_template('index.html')
 
 
 def pagina_no_encontrada(error):
