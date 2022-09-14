@@ -21,7 +21,7 @@ def login():
     if request.method == 'POST':
         #print(request.form['usuario'])
         #print(request.form['password'])
-        if request.form['usuario'] == 'admin' and request.form['password'] == '123456':
+        if request.form['usuario'] == 'admin1' and request.form['password'] == '123456':
             return redirect(url_for('index'))
         else:
             return 'intente nuevamente'
