@@ -27,3 +27,9 @@ pip install flask-script==2.0.6
 /- pip install WTForms==2.3.3
 
 /- python manage.py runserver
+
+## para modulo 4
+
+/- pip install  flask-mysql==1.5.2  
+/- pip install  flask-mysqldb==0.2.0
+-----   pip3 install mysql
