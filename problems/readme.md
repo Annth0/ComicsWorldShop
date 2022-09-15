@@ -1,5 +1,7 @@
 --- Leer para no tener problemas en la ejecución de la app --
-## desinstalar para tener los mismos que el curso 
+### desinstalar para tener los mismos que el curso 
+
+## módulos 1 y 2
 
 virtualenv -p python env
 .\env\Scripts\activate
@@ -19,5 +21,9 @@ pip install flask-script==2.0.6
 /- pip uninstall werkzeug
 /- pip install werkzeug==1.0.1
 
+## para modulo 3
+
+/- pip install flask-WtF==0.14.3
+/- pip install WTForms==2.3.3
 
 /- python manage.py runserver
