@@ -1,14 +1,18 @@
 from flask import Flask, render_template, request, redirect, url_for
+from flask_mysqldb import MySQLdb, MySQL
 from flask_wtf.csrf import CSRFProtect
 
 
 app = Flask(__name__)
 
-csrf= CSRFProtect()
+csrf = CSRFProtect()
+db = MySQL(app)
+
 
 @app.route('/')
 def index():
     return render_template('index.html')
+
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
@@ -17,10 +21,10 @@ def login():
     print(request.form['usuario'])
     print(request.form['password'])
     """
-    
+
     if request.method == 'POST':
-        #print(request.form['usuario'])
-        #print(request.form['password'])
+        # print(request.form['usuario'])
+        # print(request.form['password'])
         if request.form['usuario'] == 'admin1' and request.form['password'] == '123456':
             return redirect(url_for('index'))
         else:
@@ -29,8 +33,11 @@ def login():
         return render_template('auth/login.html')
 
 
+
+
 def pagina_no_encontrada(error):
     return render_template('errores/404.html'), 404
+
 
 def inicializar_app(config):
     app.config.from_object(config)

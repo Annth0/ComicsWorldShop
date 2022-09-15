@@ -6,6 +6,9 @@
 virtualenv -p python env
 .\env\Scripts\activate
 
+/- python manage.py runserver
+
+
 pip install flask==1.1.2
 pip install flask-script==2.0.6
 
@@ -33,3 +36,7 @@ pip install flask-script==2.0.6
 /- pip install  flask-mysql==1.5.2  
 /- pip install  flask-mysqldb==0.2.0
 -----   pip3 install mysql
+
+- pip3 uninstall mysqlclient
+pip3 install mysqlclient==2.0.3 - si no funciona: 
+pip3 install mysql
