@@ -1,5 +1,6 @@
+from csv import excel
 from flask import Flask, render_template, request, redirect, url_for
-from flask_mysqldb import MySQLdb, MySQL
+from flask_mysqldb import MySQL
 from flask_wtf.csrf import CSRFProtect
 
 
@@ -33,6 +34,24 @@ def login():
         return render_template('auth/login.html')
 
 
+@app.route('/libros')
+def listar_libros():
+    try:
+        cursor = db.connection.cursor()
+        sql = """SELECT isbn, titulo, anoedicion, precio, apellidos, nombres
+        FROM libro join autor ON autor_id = id 
+        ORDER BY titulo ASC"""
+        cursor.execute(sql)
+        data = cursor.fetchall()
+        print(data)
+        data={
+            "libros":data
+        }
+        
+        # return "Okasa. Número de libros: {0}".format(len(data))
+        return render_template('listado_libros.html', data=data)
+    except Exception as ex:
+        raise Exception(ex)
 
 
 def pagina_no_encontrada(error):
