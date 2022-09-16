@@ -47,3 +47,5 @@ pip3 install mysql
 /- pip install flask-login==0.5.0
 
 -- from flask_login import LoginManager, login_user
+
+-- from flask_login import UserMixin
