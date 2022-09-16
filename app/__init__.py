@@ -2,7 +2,7 @@ from csv import excel
 from flask import Flask, render_template, request, redirect, url_for
 from flask_mysqldb import MySQL
 from flask_wtf.csrf import CSRFProtect
-from flask_login import LoginManager
+from flask_login import LoginManager, login_user
 
 from .models.ModeloLibro import ModeloLibro
 from .models.ModeloUsuario import ModeloUsuario
@@ -30,6 +30,7 @@ def login():
             None, request.form['usuario'], request.form['password'], None)
         usuario_logeado = ModeloUsuario.login(db, usuario)
         if usuario_logeado != None:
+            login_user(usuario_logeado)
             return redirect(url_for('index'))
         else:
             return render_template('auth/login.html')
