@@ -12,7 +12,7 @@
     <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
     <img class="mb-4" src="{{  url_for('static', filename='img/flask.svg') }}" alt="flask image logo" width="72" height="57">
     <h1 class="h3 mb-3 fw-normal">Inicio de sesi&oacute;n</h1>
-    <input type="text" id="usuario" name="usuario" class="form-control" placeholder="Koder007" required autofocus minlength="7" maxlength="15">
+    <input type="text" id="usuario" name="usuario" class="form-control" placeholder="Koder007" required autofocus minlength="5" maxlength="15">
     <label for="usuario">Usuario</label>
 <input type="password" id="password" name="password" class="form-control"  placeholder="-| Password |-" required autofocus minlength="6">
 <label for="password">Password</label>
