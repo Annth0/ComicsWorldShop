@@ -46,6 +46,7 @@ def login():
 @app.route('/logout')
 def logout():
     logout_user()
+    flash('Sesión Cerrada Exitosamente!')
     return redirect(url_for('login'))
 
 @app.route('/libros')
