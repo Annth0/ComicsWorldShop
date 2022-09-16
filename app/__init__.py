@@ -13,6 +13,7 @@ app = Flask(__name__)
 
 csrf = CSRFProtect()
 db = MySQL(app)
+login_manager_app = LoginManager(app)
 
 
 @app.route('/')
