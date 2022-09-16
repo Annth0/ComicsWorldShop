@@ -1,5 +1,5 @@
 from csv import excel
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_mysqldb import MySQL
 from flask_wtf.csrf import CSRFProtect
 from flask_login import LoginManager, login_user, logout_user
@@ -37,6 +37,7 @@ def login():
             login_user(usuario_logeado)
             return redirect(url_for('index'))
         else:
+            flash('Credenciales incorrectas prro')
             return render_template('auth/login.html')
     else:
         return render_template('auth/login.html')
