@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Libros demo</title>
+</head>
+<body>
+    <h1>listado libros</h1>
+    <table>
+        {% for l in data.libros %}
+        <tr>
+            <td>{{ l.isbn }} </td>
+            <td>{{ l.titulo }} </td>
+            <td>{{ l.anoedicion }} </td>
+            <td>{{ l.autor.apellidos }} </td>
+            <td>{{ l.autor.nombres }} </td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
