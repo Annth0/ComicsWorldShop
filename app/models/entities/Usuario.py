@@ -7,7 +7,7 @@ class Usuario():
 
     def __init__(self, id, usuario, password, tipousuario):
         self.id = id
-        self.Usuario = usuario
+        self.usuario = usuario
         self.password = password
         self.tipousuario = tipousuario
 

@@ -4,6 +4,9 @@ from flask_mysqldb import MySQL
 from flask_wtf.csrf import CSRFProtect
 
 from .models.ModeloLibro import ModeloLibro
+from .models.ModeloUsuario import ModeloUsuario
+
+from .models.entities.Usuario import Usuario
 
 app = Flask(__name__)
 
@@ -26,13 +29,16 @@ def login():
     if request.method == 'POST':
         # print(request.form['usuario'])
         # print(request.form['password'])
-        if request.form['usuario'] == 'admin1' and request.form['password'] == '123456':
+        
+        usuario=Usuario(None,request.form['usuario'],request.form['password'],None)
+        logeado=ModeloUsuario.login(db,usuario)
+        if logeado: 
             return redirect(url_for('index'))
         else:
-            return 'intente nuevamente'
+            return render_template('auth/login.html')
     else:
         return render_template('auth/login.html')
-
+#request.form['usuario'] == 'admin1' and request.form['password'] == '123456':
 
 @app.route('/libros')
 def listar_libros():
