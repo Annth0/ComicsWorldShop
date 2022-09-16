@@ -2,7 +2,7 @@ from csv import excel
 from flask import Flask, render_template, request, redirect, url_for
 from flask_mysqldb import MySQL
 from flask_wtf.csrf import CSRFProtect
-from flask_login import LoginManager, login_user
+from flask_login import LoginManager, login_user, logout_user
 
 from .models.ModeloLibro import ModeloLibro
 from .models.ModeloUsuario import ModeloUsuario
@@ -42,6 +42,10 @@ def login():
         return render_template('auth/login.html')
 # request.form['usuario'] == 'admin1' and request.form['password'] == '123456':
 
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('login'))
 
 @app.route('/libros')
 def listar_libros():
