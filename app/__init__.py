@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, redirect, url_for
 from flask_mysqldb import MySQL
 from flask_wtf.csrf import CSRFProtect
 
+from .models.ModeloLibro import ModeloLibro
 
 app = Flask(__name__)
 
@@ -37,21 +38,13 @@ def login():
 @app.route('/libros')
 def listar_libros():
     try:
-        cursor = db.connection.cursor()
-        sql = """SELECT isbn, titulo, anoedicion, precio, apellidos, nombres
-        FROM libro join autor ON autor_id = id 
-        ORDER BY titulo ASC"""
-        cursor.execute(sql)
-        data = cursor.fetchall()
-        print(data)
+        libros= ModeloLibro.listar_libros(db)
         data={
-            "libros":data
+            'libros': libros
         }
-        
-        # return "Okasa. Número de libros: {0}".format(len(data))
         return render_template('listado_libros.html', data=data)
     except Exception as ex:
-        raise Exception(ex)
+        print(ex)        
 
 
 def pagina_no_encontrada(error):
