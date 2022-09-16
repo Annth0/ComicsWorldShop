@@ -40,3 +40,8 @@ pip install flask-script==2.0.6
 - pip3 uninstall mysqlclient
 pip3 install mysqlclient==2.0.3 - si no funciona: 
 pip3 install mysql 
+
+## para modulo 5
+
+### 5.3
+/- pip install flask-login==0.5.0

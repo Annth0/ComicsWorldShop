@@ -21,15 +21,8 @@ def index():
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
-    """
-    print(request.method)
-    print(request.form['usuario'])
-    print(request.form['password'])
-    """
 
     if request.method == 'POST':
-        # print(request.form['usuario'])
-        # print(request.form['password'])
 
         usuario = Usuario(
             None, request.form['usuario'], request.form['password'], None)
