@@ -18,6 +18,7 @@ db = MySQL(app)
 def index():
     return render_template('index.html')
 
+
 @app.route('/login', methods=['POST', 'GET'])
 def login():
     """
@@ -29,27 +30,29 @@ def login():
     if request.method == 'POST':
         # print(request.form['usuario'])
         # print(request.form['password'])
-        
-        usuario=Usuario(None,request.form['usuario'],request.form['password'],None)
-        logeado=ModeloUsuario.login(db,usuario)
-        if logeado: 
+
+        usuario = Usuario(
+            None, request.form['usuario'], request.form['password'], None)
+        usuario_logeado = ModeloUsuario.login(db, usuario)
+        if usuario_logeado != None:
             return redirect(url_for('index'))
         else:
             return render_template('auth/login.html')
     else:
         return render_template('auth/login.html')
-#request.form['usuario'] == 'admin1' and request.form['password'] == '123456':
+# request.form['usuario'] == 'admin1' and request.form['password'] == '123456':
+
 
 @app.route('/libros')
 def listar_libros():
     try:
-        libros= ModeloLibro.listar_libros(db)
-        data={
+        libros = ModeloLibro.listar_libros(db)
+        data = {
             'libros': libros
         }
         return render_template('listado_libros.html', data=data)
     except Exception as ex:
-        print(ex)        
+        print(ex)
 
 
 def pagina_no_encontrada(error):
