@@ -15,6 +15,10 @@ csrf = CSRFProtect()
 db = MySQL(app)
 login_manager_app = LoginManager(app)
 
+@login_manager_app.user_loader
+def load_user(id):
+    return ModeloUsuario.obtener_por_id(db, id)
+
 
 @app.route('/')
 def index():
