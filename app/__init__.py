@@ -39,7 +39,7 @@ def login():
             login_user(usuario_logeado)
             return redirect(url_for('index'))
         else:
-            flash(LOGIN_CREDENCIALES_INVALIDAS)
+            flash(LOGIN_CREDENCIALES_INVALIDAS,'warning')
             return render_template('auth/login.html')
     else:
         return render_template('auth/login.html')
@@ -48,7 +48,7 @@ def login():
 @app.route('/logout')
 def logout():
     logout_user()
-    flash(LOGOUT)
+    flash(LOGOUT,'success')
     return redirect(url_for('login'))
 
 @app.route('/libros')
