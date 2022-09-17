@@ -12,6 +12,5 @@ class Usuario(UserMixin):
         self.tipousuario = tipousuario
         
     @classmethod
-    def verifictar_password(self, encriptado,password):
-        coincide = check_password_hash(encriptado, password)
-        return coincide
+    def verificar_password(self, encriptado,password):
+        return check_password_hash(encriptado, password)

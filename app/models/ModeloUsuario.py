@@ -1,8 +1,6 @@
-from werkzeug.security import check_password_hash
-
+#from werkzeug.security import check_password_hash
 from app.models.entities.Usuario import Usuario
 from app.models.entities.TipoUsuario import TipoUsuario
-
 
 class ModeloUsuario():
     @classmethod
@@ -13,10 +11,13 @@ class ModeloUsuario():
                 usuario.usuario)
             cursor.execute(sql)
             data = cursor.fetchone()
-            coincide = check_password_hash(data[2], usuario.password)
-            if coincide:
-                usuario_logeado = Usuario(data[0], data[1], None, None)
-                return usuario_logeado
+            if data!= None:
+                coincide = Usuario.verificar_password(data[2], usuario.password)
+                if coincide:
+                    usuario_logeado = Usuario(data[0], data[1], None, None)
+                    return usuario_logeado
+                else:
+                    return None
             else:
                 return None
         except Exception as ex:
