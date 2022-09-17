@@ -30,6 +30,27 @@
   <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
     <h2>{{ data.titulo }}</h2>
   </div>
+  {% if current_user.tipousuario.id ==1 %}
+
+  {% if data.libros_vendidos|length > 0 %}
+
+  {% else %}
+  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+    <h3>A&uacute;n no existen libros vendidos...</h3>
+  </div>
+  {% endif %}
+
+  {% else %}
+
+  {% if data.compras|length > 0 %}
+
+  {% else %}
+  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+    <h3>A&uacute;n no haz comprado libros...</h3>
+  </div>
+  {% endif %}
+
+  {% endif %}
 
 </div>
 
