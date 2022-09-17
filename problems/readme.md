@@ -48,4 +48,4 @@ pip3 install mysql
 
 -- from flask_login import LoginManager, login_user
 
--- from flask_login import UserMixin
+from flask_login import LoginManager, login_user,   logout_user, login_required

@@ -18,6 +18,7 @@ csrf = CSRFProtect()
 db = MySQL(app)
 login_manager_app = LoginManager(app)
 
+
 @login_manager_app.user_loader
 def load_user(id):
     return ModeloUsuario.obtener_por_id(db, id)
@@ -39,20 +40,22 @@ def login():
         usuario_logeado = ModeloUsuario.login(db, usuario)
         if usuario_logeado != None:
             login_user(usuario_logeado)
-            flash(MENSAJE_BIENVENIDA,'success')
+            flash(MENSAJE_BIENVENIDA, 'success')
             return redirect(url_for('index'))
         else:
-            flash(LOGIN_CREDENCIALES_INVALIDAS,'warning')
+            flash(LOGIN_CREDENCIALES_INVALIDAS, 'warning')
             return render_template('auth/login.html')
     else:
         return render_template('auth/login.html')
 # request.form['usuario'] == 'admin1' and request.form['password'] == '123456':
 
+
 @app.route('/logout')
 def logout():
     logout_user()
-    flash(LOGOUT,'success')
+    flash(LOGOUT, 'success')
     return redirect(url_for('login'))
+
 
 @app.route('/libros')
 @login_required
@@ -71,8 +74,13 @@ def pagina_no_encontrada(error):
     return render_template('errores/404.html'), 404
 
 
+def pagina_no_autorizada(error):
+    return redirect(url_for('login'))
+
+
 def inicializar_app(config):
     app.config.from_object(config)
     csrf.init_app(app)
     app.register_error_handler(404, pagina_no_encontrada)
+    app.register_error_handler(401, pagina_no_autorizada)
     return app
