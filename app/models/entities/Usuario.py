@@ -10,8 +10,8 @@ class Usuario(UserMixin):
         self.usuario = usuario
         self.password = password
         self.tipousuario = tipousuario
-
-    def encriptar_password(password):
-        encriptado = generate_password_hash(password)
+        
+    @classmethod
+    def verifictar_password(self, encriptado,password):
         coincide = check_password_hash(encriptado, password)
         return coincide
