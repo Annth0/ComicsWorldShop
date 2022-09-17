@@ -12,9 +12,11 @@
             <li class="nav-item">
                 <a class="nav-link" href="/login">Autores</a>
             </li>
+            {% if current_user.tipousuario.id == 2 %}
             <li class="nav-item">
                 <a class="nav-link" href="{{ url_for('listar_libros') }}">Libros</a>
             </li>
+            {% endif %}
         </ul>
         <span class="navbar-text" margin="auto">
             <a href="/logout">Cerrar sesi&oacute;n &rAarr; |-</a>
