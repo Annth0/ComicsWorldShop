@@ -6,10 +6,10 @@
 <div class="row">
     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12"></div>
     <h1>Listado de "Comic World Shop"</h1>
+    
     {% with messages = get_flashed_messages() %}
 
     {% if messages %}
-    <br/><br/>
     {% for message in messages %}
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong style="font-size: 14px;">{{ message }}</strong> 
@@ -24,4 +24,13 @@
     {% endwith %}
     
 </div>
+<hr>
+
+<div class="row">
+  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+    <h2>{{ data.titulo }}</h2>
+  </div>
+
+</div>
+
 {% endblock %}
