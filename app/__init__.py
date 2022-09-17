@@ -67,7 +67,7 @@ def index():
                 'titulo': 'Mis compras',
                 'compras': compras
             }
-        return render_template('index.html', data= data)
+        return render_template('index.html', data=data)
     else:
         return redirect(url_for('login'))
 
@@ -78,6 +78,7 @@ def listar_libros():
     try:
         libros = ModeloLibro.listar_libros(db)
         data = {
+            'titulo': 'Listado de libros',
             'libros': libros
         }
         return render_template('listado_libros.html', data=data)

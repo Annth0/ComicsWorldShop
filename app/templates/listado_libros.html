@@ -1,23 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Libros demo</title>
-</head>
-<body>
-    <h1>listado libros</h1>
-    <table>
-        {% for l in data.libros %}
-        <tr>
-            <td>{{ l.isbn }} </td>
-            <td>{{ l.titulo }} </td>
-            <td>{{ l.anoedicion }} </td>
-            <td>{{ l.autor.apellidos }} </td>
-            <td>{{ l.autor.nombres }} </td>
-        </tr>
-        {% endfor %}
-    </table>
-</body>
-</html>
+{% extends './body.html' %}
+
+{% block title %}Listado de Libros{% endblock %}
+
+{% block container %}
+<div class="row"> 
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12"></div>
+    <h1>{{ data.titulo }}</h1>
+</div>
+
+<hr>
+
+<div class="row">
+    {% for l in data.libros %}
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <div class="card mb-4">
+            <div class="card-body">
+                <h5 class="card-title">{{ l.titulo }}</h5>
+                <p class="card-text">{{ l.autor.nombre_completo() }}</p>
+                <button class="btn btn-block btn-primary">| Comprar |</button>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+
+</div>
+{% endblock %}
