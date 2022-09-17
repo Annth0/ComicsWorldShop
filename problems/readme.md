@@ -49,3 +49,7 @@ pip3 install mysql
 -- from flask_login import LoginManager, login_user
 
 from flask_login import LoginManager, login_user,   logout_user, login_required
+
+## para modulo 6
+
+from flask_login import LoginManager, login_user,   logout_user, login_required, jsonify
