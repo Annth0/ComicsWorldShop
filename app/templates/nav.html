@@ -13,11 +13,14 @@
                 <a class="nav-link" href="/login">Autores</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/libros">Libros</a>
+                <a class="nav-link" href="{{ url_for('listar_libros') }}">Libros</a>
             </li>
         </ul>
+        <span class="navbar-text" margin="auto">
+            <a href="/logout">Cerrar sesi&oacute;n &rAarr; |-</a>
+        </span>
         <span class="navbar-text">
-            <a href="/logout">Cerrar sesi&oacute;n &rAarr;</a>
+            <strong>{{ current_user.usuario }}</strong> ({{ current_user.tipousuario.nombre }})
         </span>
     </div>
 </nav>
