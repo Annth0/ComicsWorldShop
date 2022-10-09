@@ -25,6 +25,7 @@
     </div>
 
     {% endfor %}
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 
 </div>
 {% endblock %}

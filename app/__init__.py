@@ -6,11 +6,14 @@ from flask_mysqldb import MySQL
 from flask_wtf.csrf import CSRFProtect
 from flask_login import LoginManager, login_user, logout_user, login_required, current_user
 
+from .models.ModeloCompra import ModeloCompra
 from .models.ModeloLibro import ModeloLibro
 from .models.ModeloUsuario import ModeloUsuario
 
 from .consts import *
 
+from .models.entities.Compra import Compra
+from .models.entities.Libro import Libro
 from .models.entities.Usuario import Usuario
 
 app = Flask(__name__)
@@ -86,22 +89,26 @@ def listar_libros():
     except Exception as ex:
         return render_template('errores/error.html', mensaje=format(ex))
 
-@app.route('/compralibro', methods=['POST'])
+
+@app.route('/comprarLibro', methods=['POST'])
 @login_required
 def comprar_libro():
     data_request = request.get_json()
     print(data_request)
-    data={}
+    data = {}
     try:
-        data['exito']=True
+        libro = Libro(data_request['isbn'], None, None, None, None)
+        compra = Compra(None, libro, current_user)
+
+        data['exito'] = ModeloCompra.registrar_compra(db, compra)
     except Exception as ex:
-        data['mensaje']=format(ex)
-        data['exito']=False
+        data['mensaje'] = format(ex)
+        data['exito'] = False
     return jsonify(data)
+
 
 def pagina_no_encontrada(error):
     return render_template('errores/404.html'), 404
-
 
 
 def pagina_no_autorizada(error):

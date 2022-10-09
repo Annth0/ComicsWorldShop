@@ -1,6 +1,7 @@
 (function () {
-    const btnsComprarLibro = document.querySelectorAll('btnComprarLibro');
+    const btnsComprarLibro = document.querySelectorAll('.btnComprarLibro');
     let isbnLibroSeleccionado = null;
+    const csrf_token= document.querySelector("[name='csrf_token']").value;
 
     btnsComprarLibro.forEach((btn) => {
         btn.addEventListener('click', function () {
@@ -10,13 +11,13 @@
     })
 
     const confirmarComprar = async () => {
-        await fetch('http://127.0.0.1:5000/comprarlibro', {
+        await fetch('http://127.0.0.1:5000/comprarLibro', {
             method: 'POST',
             mode: 'same-origin',
             credentials: 'same-origin',
             headers: {
-                'content-type': 'application/json',
-                'X-CSRF-Token': ''
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': csrf_token
             },
             body: JSON.stringify({
                 'isbn': isbnLibroSeleccionado
