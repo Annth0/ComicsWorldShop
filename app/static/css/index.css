@@ -1,0 +1,12 @@
+#ValorTotal {
+
+text-decoration: violet;
+background-color: greenyellow;
+padding: 1%;
+margin-top: auto !important;
+}
+
+th, td{
+    text-align: center;
+    vertical-align: middle;
+}

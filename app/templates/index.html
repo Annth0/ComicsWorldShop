@@ -2,27 +2,31 @@
 
 {% block title %}Index{% endblock %}
 
+{% block customCSS%}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}">
+{% endblock %}
+
 {% block container %}
 <div class="row">
-    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12"></div>
-    <h1>Listado de "Comic World Shop"</h1>
-    
-    {% with messages = get_flashed_messages() %}
+  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12"></div>
+  <h1>Listado de "Comic World Shop"</h1>
 
-    {% if messages %}
-    {% for message in messages %}
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        <strong style="font-size: 14px;">{{ message }}</strong> 
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-    {% endfor %}
+  {% with messages = get_flashed_messages() %}
 
-    {% endif%}
+  {% if messages %}
+  {% for message in messages %}
+  <div class="alert alert-success alert-dismissible fade show" role="alert">
+    <strong style="font-size: 14px;">{{ message }}</strong>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  {% endfor %}
 
-    {% endwith %}
-    
+  {% endif%}
+
+  {% endwith %}
+
 </div>
 <hr>
 
@@ -33,6 +37,40 @@
   {% if current_user.tipousuario.id ==1 %}
 
   {% if data.libros_vendidos|length > 0 %}
+  <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+    <div class="table responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Libro</th>
+            <th>Unidades Vendidas</th>
+            <th>Precio Unitario</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% set contador = namespace(total=0) %}
+          {% for l in data.libros_vendidos %}
+          <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ l.titulo }}</td>
+            <td>{{ l.unidades_vendidas }}</td>
+            <td>Cop. {{ l.precio }}</td>
+            <td>Cop. {{ l.precio * l.unidades_vendidas }}</td>
+          </tr>
+          {% set contador.total = contador.total + (l.precio * l.unidades_vendidas) %}
+
+          {% endfor %}
+          <tr>
+            <td colspan="4"></td>
+            <td id="ValorTotal">Cop. {{ contador.total }}</td>
+            </td> 
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
 
   {% else %}
   <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
@@ -44,18 +82,18 @@
 
   {% if data.compras|length > 0 %}
   {% for c in data.compras %}
-    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
-        <div class="card mb-4 shadow-sm">
-            {% set url = 'img/portadas/' + c.libro.isbn + '.jpg' %}
-            <img src="{{ url_for('static', filename=url) }}" alt="{{ c.libro.titulo }}" height="320" class="card-img-top">
-            <div class="card-body">
-                <h5 class="card-title">{{ c.libro.titulo }} <span style="float: right;">Cop/ {{ c.libro.precio }}</span> </h5>
-                <p class="card-text">comprado: {{ c.formatted_date() }}</p>
-            </div>
-        </div>
+  <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+    <div class="card mb-4 shadow-sm">
+      {% set url = 'img/portadas/' + c.libro.isbn + '.jpg' %}
+      <img src="{{ url_for('static', filename=url) }}" alt="{{ c.libro.titulo }}" height="320" class="card-img-top">
+      <div class="card-body">
+        <h5 class="card-title">{{ c.libro.titulo }} <span style="float: right;">Cop/ {{ c.libro.precio }}</span> </h5>
+        <p class="card-text">comprado: {{ c.formatted_date() }}</p>
+      </div>
     </div>
+  </div>
 
-    {% endfor %}
+  {% endfor %}
   {% else %}
   <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
     <h3>A&uacute;n no haz comprado libros...</h3>
