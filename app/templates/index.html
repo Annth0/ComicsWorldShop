@@ -43,7 +43,19 @@
   {% else %}
 
   {% if data.compras|length > 0 %}
+  {% for c in data.compras %}
+    <div class="col-sm-12 col-md-6 col-lg-4 col-xl-4">
+        <div class="card mb-4 shadow-sm">
+            {% set url = 'img/portadas/' + c.libro.isbn + '.jpg' %}
+            <img src="{{ url_for('static', filename=url) }}" alt="{{ c.libro.titulo }}" height="320" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title">{{ c.libro.titulo }} <span style="float: right;">Cop/ {{ c.libro.precio }}</span> </h5>
+                <p class="card-text">comprado: {{ c.formatted_date() }}</p>
+            </div>
+        </div>
+    </div>
 
+    {% endfor %}
   {% else %}
   <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
     <h3>A&uacute;n no haz comprado libros...</h3>

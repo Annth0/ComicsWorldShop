@@ -39,7 +39,11 @@
                     }
                     return response.json();
                 }).then(data => {
-                    notificacionSwal('¡Exito!', 'Libro comprado!', 'success', 'OK');
+                    if(data.exito){
+                        notificacionSwal('¡Exito!', 'Libro comprado!', 'success', 'OK');
+                    }else{
+                        notificacionSwal('Alerta', data.mensaje, 'warning', 'Ok');
+                    }
                 }).catch(error => {
                     notificacionSwal('Error', error, 'error', 'Cerrar');
                 });

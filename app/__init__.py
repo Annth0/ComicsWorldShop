@@ -66,7 +66,7 @@ def index():
                 'libros_vendidos': libros_vendidos
             }
         else:
-            compras = []
+            compras = ModeloCompra.listar_compras_usuario(db,current_user)
             data = {
                 'titulo': 'Mis compras',
                 'compras': compras
